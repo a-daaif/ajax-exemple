@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tester Ajax</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <h2>Test AJAX</h2>
+    <button onclick="charger()" class="btn btn-success">Charger contacts</button>
+    <form enctype="multipart/form-data" method="post">
+        <input type="text" name="name" placeholder="Name"><br>
+        <input type="file" name="photo"><br>
+        <button type="button" class="btn btn-primary"
+                onclick="upload(this.form)">Upload de fichier</button>
+
+    </form>
+    <pre class="contacts"></pre>
+
+</div>
+<script src="script.js"></script>
+<script>
+function charger() {
+    var data = {a: 23, b:"abcd", c:65}
+
+    ajax.get('http://localhost/ajax/index.php', data).then(success).catch(error)
+
+
+}
+
+function upload(frm) {
+    ajax.post2('http://localhost/ajax/', frm, success, error, progress )
+}
+function success (data) {
+
+    document.querySelector('.contacts').innerHTML = data
+}
+function error (err, txt) {
+    console.log(err, txt)
+}
+
+function progress(state) {
+
+
+}
+
+</script>
+</body>
+</html>
